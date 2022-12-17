@@ -1,0 +1,32 @@
+================================REDUX COURSE=================================
+
+Redux must be used when your application need to manage complex states to
+avoinding perform troubles when using ContextAPI.
+
+----------------------------FLOW ARCHITETURE---------------------------------
+
+Flow architeture is the architeture Redux works on that allows us to manage
+complex global states in our application.
+
+Actions: Are actions are triggered by a function and the actions carries the
+data to the reducer (the global state). An aciton must be an unique string to
+be able to be indentified.
+
+Reducer: Is the global state handler linked to a data. Its works like a lis-
+tener waiting to listen to the actions and alter specific data in your global
+state accoriding your action type.
+
+To know something have been changed in our context, we need to connect our
+component with the respective reducer and this specific reducer will tell our
+component that something has changed in our context. We can connect several
+components to our reducer.
+
+Middlewares (Redux Saga): Does the data verification before to run some
+action.
+
+1. Install the Redux and the React Redux running yarn add react-redux redux
+   @reduxjs/toolkit
+
+2. Create a new folder named as "store" and inside this a new index.ts file,
+   inside this file, import the configureStore from '@reduxjs/toolkit' and ex-
+   port it.
