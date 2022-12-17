@@ -1,20 +1,21 @@
 ================================REDUX COURSE=================================
 
 Redux must be used when your application need to manage complex states to
-avoinding perform troubles when using ContextAPI.
+avoiding perform troubles when using ContextAPI.
 
-----------------------------FLOW ARCHITETURE---------------------------------
+----------------------------FLOW ARCHITECTURE---------------------------------
 
-Flow architeture is the architeture Redux works on that allows us to manage
+Flow architecture is the architecture Redux works on that allows us to manage
 complex global states in our application.
 
 Actions: Are actions are triggered by a function and the actions carries the
-data to the reducer (the global state). An aciton must be an unique string to
-be able to be indentified.
+data to the reducer (the global state). An action must be an unique string to
+be able to be identified.
 
-Reducer: Is the global state handler linked to a data. Its works like a lis-
-tener waiting to listen to the actions and alter specific data in your global
-state accoriding your action type.
+Reducer: Is a isolated piece of the global state handler linked to a data. 
+Example: CartReducer, AuthReducer. Its works like a listener waiting to listen 
+to the actions and alter specific data in your global state according to your 
+action type.
 
 To know something have been changed in our context, we need to connect our
 component with the respective reducer and this specific reducer will tell our
@@ -24,9 +25,78 @@ components to our reducer.
 Middlewares (Redux Saga): Does the data verification before to run some
 action.
 
-1. Install the Redux and the React Redux running yarn add react-redux redux
-   @reduxjs/toolkit
+1) Install the Redux and the React Redux running yarn add react-redux redux
+   @reduxjs/toolkit.
 
-2. Create a new folder named as "store" and inside this a new index.ts file,
+----------------
+
+2) Create a new folder named as "store" and inside this a new index.ts file,
    inside this file, import the configureStore from '@reduxjs/toolkit' and ex-
    port it.
+
+----------------
+
+3) To create your reducer, create a new folder named as "modules", inside it 
+a new folder with your reducer name, and inside it a new reducer.ts file 
+exporting your reducer function. Declare also your interfaces in a separated 
+file. A reducer is a function returning your state data. Always assign your 
+initial state to a variable. Example:
+
+export interface IProduct{
+    id: number;
+    title: string;
+    price: number;
+}
+
+export interface ICartItem{
+    product: IProduct;
+    quantity: number;
+}
+
+
+export interface ICartState{
+    items: ICartItem[];
+}
+
+--------
+
+import { Reducer } from "redux";
+import { ICartState } from "./types";
+
+const INITIAL_STATE : ICartState = {
+    items: []
+}
+
+const cart: Reducer<ICartState> = () => {
+    return INITIAL_STATE
+}
+
+
+export default cart;
+
+
+----------------
+
+4) Inside the "modules" folder. create a new file named as "rootReducer", im-
+port the combineReducers from redux and export a function containing all yours 
+reducers. Example:
+
+import { combineReducers } from 'redux';
+import cart from './cart/reducer';
+
+export default combineReducers({
+    cart,
+})
+
+----------------
+
+5) Inside the "modules" folder create a new index file importing createStore 
+from redux and your rootReducer. Export your store passing your rootReducer
+as parameter to createStore function. Example:
+
+import { createStore } from 'redux'
+import rootReducer from './modules/rootReducer.ts';
+
+const store = createStore(rootReducer)
+
+export default store;

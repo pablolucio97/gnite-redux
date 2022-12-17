@@ -8,6 +8,8 @@
         "isolatedModules": true,
         "moduleResolution": "Node",
         "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "include" : ["**/.ts", "**/*.tsx"],
+        "exclude": ["node_modules"]
     }
 }
