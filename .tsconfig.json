@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ESNext",
         "allowJs": false,
-        "strict": true,
+        "strict": false,
         "module": "ESNext",
         "jsx": "react-jsx",
         "isolatedModules": true,
