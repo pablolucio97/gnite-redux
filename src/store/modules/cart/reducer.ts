@@ -12,12 +12,23 @@ const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
         switch (action.type) {
             case 'ADD_PRODUCT_TO_CARD': {
                 const { product } = action.payload
-                draft.items.push({
-                    product,
-                    quantity: 1
-                })
+
+                //CHECKS IF PRODUCT ALREADY IS IN CART AND INCREASES THE QUANTITY
+                //OTHERWISE ONLY ADD TO CART NORMALLY
+
+                const productCartIndex = draft.items
+                    .findIndex(item => item.product.id === product.id)
+
+                if (productCartIndex >= 0) {
+                    draft.items[productCartIndex].quantity++
+                } else {
+                    draft.items.push({
+                        product,
+                        quantity: 1
+                    })
+                }
             }
-            break
+                break
             default: {
                 return draft
             }

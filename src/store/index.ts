@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
 //@ts-ignore
 import { ICartState } from './modules/cart/types.ts';
 //@ts-ignore
@@ -8,6 +9,6 @@ export interface IState{
     cart: ICartState;
 }
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools())
 
 export default store;

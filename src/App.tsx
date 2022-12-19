@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux'
 //@ts-ignore
-import { Catalog } from './components/catalog/index.tsx';
+import { Catalog } from './components/Catalog/index.tsx';
 //@ts-ignore
-import { Cart } from './components/cart/index.tsx';
+import { Cart } from './components/Cart/index.tsx';
 //@ts-ignore
 import store from './store/index.ts';
 
