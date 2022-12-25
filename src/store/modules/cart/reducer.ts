@@ -3,14 +3,15 @@ import produce from 'immer'
 import { ICartState } from "./types";
 
 const INITIAL_STATE: ICartState = {
-    items: []
+    items: [],
+    failedStockCheck: []
 }
 
 const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
 
     return produce(state, draft => {
         switch (action.type) {
-            case 'ADD_PRODUCT_TO_CARD': {
+            case 'ADD_PRODUCT_TO_CART_SUCCESS': {
                 const { product } = action.payload
 
                 //CHECKS IF PRODUCT ALREADY IS IN CART AND INCREASES THE QUANTITY
@@ -29,6 +30,10 @@ const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
                 }
             }
                 break
+            case 'ADD_PRODUCT_TO_CART_FAILURE':{
+                draft.failedStockCheck.push(action.payload.productId)
+                break
+            }
             default: {
                 return draft
             }

@@ -1,10 +1,31 @@
-import { IProduct } from './types'
+//@ts-ignore
+import { ActionTypes, IProduct } from './types.ts'
 
-export function addProductToCard(product: IProduct) {
+export function addProductToCartRequest(product: IProduct) {
     return {
-        type: 'ADD_PRODUCT_TO_CARD',
+        type: ActionTypes.addProductToCartRequest,
         payload: {
             product
+        }
+    }
+}
+
+
+
+export function addProductToCartSuccess(product: IProduct) {
+    return {
+        type: ActionTypes.addProductToCartSuccess,
+        payload: {
+            product
+        }
+    }
+}
+
+export function addProductToCartFailure(productId: string) {
+    return {
+        type: ActionTypes.addProductToCartFailure,
+        payload: {
+            productId
         }
     }
 }
